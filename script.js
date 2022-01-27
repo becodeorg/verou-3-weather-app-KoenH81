@@ -1,9 +1,6 @@
 // whatCity function
 function whatCity() {
-    if (document.querySelector(".date"))
-        location.reload();
     // fetch data
-
     let cityName = document.getElementById('cName').value;
     fetch('http://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&units=metric&appid=25266980979ea915f2dea46a8bfb113e')
         .then(response => response.json())
@@ -13,6 +10,10 @@ function whatCity() {
         })
     // complete citySpan
     document.getElementById('citySpan').innerText = ' ' + cityName;
+    // replace form with 'new search button
+    document.getElementById('form').style.display = 'none';
+    document.getElementById('button').style.display = 'flex';
+    document.getElementById('nSearch').style.display = 'block';
 
 }
 //eventlistener city
@@ -48,7 +49,6 @@ function getDate(data) {
     nog1 = document.createElement('div');
     nog1.id = 'nog1';
     aDiv.append(nog1);
-
     //tomorrow
     const tomorrowP = document.createElement('P');
     tomorrowP.innerText = 'Tomorrow';
@@ -394,6 +394,11 @@ function getDate(data) {
         }
     }
 }
+function reset() {
+    location.reload();
+}
+const reset2 = document.getElementById('nSearch');
+reset2.addEventListener('click', reset);
 
 
 
